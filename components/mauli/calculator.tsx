@@ -242,7 +242,7 @@ export function Calculator() {
                   label="Expected Annual Return"
                   value={rate}
                   min={1}
-                  max={30}
+                  max={18}
                   step={0.5}
                   onChange={setRate}
                   display={`${rate}%`}
