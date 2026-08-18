@@ -43,11 +43,18 @@ export function Header() {
         className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
       >
         <a href="/" className="flex flex-col items-start leading-none" aria-label="Mauli Wealth home">
-  <Image src="/logo-wordmark.png" ... />
-  <span className="mt-1 text-[10px] font-medium tracking-wide text-muted-foreground sm:text-xs">
-    Founded by Vikas Parab
-  </span>
-</a>
+          <Image
+            src="/logo-wordmark.png"
+            alt="Mauli Wealth"
+            width={847}
+            height={505}
+            className="h-12 w-auto sm:h-14"
+            priority
+          />
+          <span className="mt-1 text-[10px] font-medium tracking-wide text-muted-foreground sm:text-xs">
+            Founded by Vikas Parab
+          </span>
+        </a>
 
         <div className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-8">
