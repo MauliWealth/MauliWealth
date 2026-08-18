@@ -12,14 +12,14 @@ const QUICK_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { icon: FacebookIcon, label: 'Facebook', href: 'https://facebook.com/mauliwealth' },
+  { icon: FacebookIcon, label: 'Facebook', href: undefined },
   { icon: InstagramIcon, label: 'Instagram', href: 'https://www.instagram.com/mauli.wealth' },
   {
     icon: MessageCircle,
     label: 'WhatsApp',
     href: 'https://wa.me/918355960124',
   },
-  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/mauliwealth' },
+  { icon: LinkedinIcon, label: 'LinkedIn', href: undefined },
 ]
 
 const COMPLIANCE_LINKS = [
@@ -86,8 +86,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="size-4 shrink-0 text-accent-2" aria-hidden="true" />
-                <a href="mailto:vikas122@gmail.com" className="hover:text-accent-2">
-                  vikas122@gmail.com
+                <a href="mailto:info@mauliwealth.com" className="hover:text-accent-2">
+                  info@mauliwealth.com
                 </a>
               </li>
             </ul>
@@ -132,7 +132,12 @@ export function Footer() {
             the interest rates. The past performance of the mutual funds is not necessarily
             indicative of future performance of the schemes. Mauli Wealth is not guaranteeing or
             assuring any dividend under any of the schemes and the same is subject to the
-            availability and adequacy of distributable surplus.
+            availability and adequacy of distributable surplus.            
+            All existing and prospective investors are advised to check and evaluate the Exit loads and 
+            other cost structure (TER) applicable at the time of making the investment before finalizing 
+            on any investment decision for Mutual Funds schemes. We deal in Regular Plans only for 
+            Mutual Fund Schemes and earn a Trailing Commission on client investments. 
+            Disclosure For Commission earnings is made to clients at the time of investments.
           </p>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted-foreground">

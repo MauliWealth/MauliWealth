@@ -51,9 +51,6 @@ export function Header() {
             className="h-12 w-auto sm:h-14"
             priority
           />
-          <span className="mt-1 text-[10px] font-medium tracking-wide text-muted-foreground sm:text-xs">
-            Founded by Vikas Parab
-          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

@@ -18,7 +18,7 @@ export function EnquiryForm() {
     // later if you'd like silent, in-page submission.
     const subject = encodeURIComponent(`Investment enquiry from ${name || 'website visitor'}`)
     const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\n${message}`)
-    window.location.href = `mailto:vikas122@gmail.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:info@mauliwealth.com?subject=${subject}&body=${body}`
     setSent(true)
   }
 

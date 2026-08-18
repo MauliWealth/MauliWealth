@@ -12,14 +12,14 @@ const CONTACT_CARDS = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'vikas122@gmail.com',
-    href: 'mailto:vikas122@gmail.com',
+    value: 'info@mauliwealth.com',
+    href: 'mailto:info@mauliwealth.com',
   },
   {
     icon: MapPin,
     label: 'Location',
     value: 'Bhayandar (East), Thane',
-    href: undefined,
+    href: "https://maps.app.goo.gl/f9D5e2q3Q5xYEYvF6",
   },
 ]
 

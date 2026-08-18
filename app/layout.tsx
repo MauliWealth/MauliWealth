@@ -97,7 +97,7 @@ function OrganizationJsonLd() {
     founder: { '@type': 'Person', name: 'Vikas Deepak Parab' },
     address: { '@type': 'PostalAddress', addressLocality: 'Bhayandar (East), Thane', addressCountry: 'IN' },
     telephone: '+91-8355960124',
-    email: 'vikas122@gmail.com',
+    email: 'info@mauliwealth.com',
     areaServed: 'IN',
     sameAs: ['https://www.instagram.com/mauli.wealth'],
     knowsAbout: [
