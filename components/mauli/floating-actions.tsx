@@ -39,13 +39,13 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105"
+        className="flex size-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105"
       >
         <MessageCircle className="size-7" aria-hidden="true" fill="white" />
       </a>
 
       <a
-        href="https://instagram.com/mauliwealth"
+        href="https://www.instagram.com/mauli.wealth"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Follow on Instagram"

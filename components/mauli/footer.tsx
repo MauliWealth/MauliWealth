@@ -13,7 +13,7 @@ const QUICK_LINKS = [
 
 const SOCIAL_LINKS = [
   { icon: FacebookIcon, label: 'Facebook', href: 'https://facebook.com/mauliwealth' },
-  { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/mauliwealth' },
+  { icon: InstagramIcon, label: 'Instagram', href: 'https://www.instagram.com/mauli.wealth' },
   {
     icon: MessageCircle,
     label: 'WhatsApp',
@@ -40,7 +40,7 @@ export function Footer() {
           <div>
             <a href="/" className="inline-flex items-center" aria-label="Mauli Wealth home">
               <Image
-                src="/logo-wordmark.png"
+                src="/logo.png"
                 alt="Mauli Wealth"
                 width={847}
                 height={505}
@@ -76,7 +76,7 @@ export function Footer() {
               <li>Founder: Vikas Deepak Parab</li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-accent-2" aria-hidden="true" />
-                Ramavtar Area
+                Bhayandar (East), Thane
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="size-4 shrink-0 text-accent-2" aria-hidden="true" />

@@ -95,11 +95,11 @@ function OrganizationJsonLd() {
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     founder: { '@type': 'Person', name: 'Vikas Deepak Parab' },
-    address: { '@type': 'PostalAddress', addressLocality: 'Ramavtar Area', addressCountry: 'IN' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Bhayandar (East), Thane', addressCountry: 'IN' },
     telephone: '+91-8355960124',
     email: 'vikas122@gmail.com',
     areaServed: 'IN',
-    sameAs: ['https://instagram.com/mauliwealth'],
+    sameAs: ['https://www.instagram.com/mauli.wealth'],
     knowsAbout: [
       'Mutual Funds',
       'Systematic Investment Plans',

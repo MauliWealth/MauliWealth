@@ -18,7 +18,7 @@ const CONTACT_CARDS = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Ramavtar Area',
+    value: 'Bhayandar (East), Thane',
     href: undefined,
   },
 ]
@@ -76,7 +76,7 @@ export function ContactInfo() {
             Chat on WhatsApp
           </a>
           <a
-            href="https://instagram.com/mauliwealth"
+            href="https://www.instagram.com/mauli.wealth"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)] px-5 py-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
