@@ -37,8 +37,10 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.17}>
-          <p className="mt-5 text-sm font-medium text-accent-2">
-            Founded and personally led by Vikas Parab, MBA Finance
+          <p className="mt-5 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-wider text-muted-foreground sm:text-sm">
+            <span className="h-px w-6 bg-border sm:w-8" aria-hidden="true" />
+            Founded &amp; Led by Vikas Parab, MBA Finance
+            <span className="h-px w-6 bg-border sm:w-8" aria-hidden="true" />
           </p>
         </Reveal>
 
