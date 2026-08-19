@@ -42,12 +42,12 @@ export function Header() {
         aria-label="Primary"
         className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
       >
-        <a href="/" className="flex flex-col items-start leading-none" aria-label="Mauli Wealth home">
+        <a href="/" className="flex items-center" aria-label="Mauli Wealth home">
           <Image
             src="/logo.png"
             alt="Mauli Wealth"
-            width={847}
-            height={505}
+            width={1439}
+            height={716}
             className="h-12 w-auto sm:h-14"
             priority
           />

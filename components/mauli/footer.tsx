@@ -42,8 +42,8 @@ export function Footer() {
               <Image
                 src="/logo.png"
                 alt="Mauli Wealth"
-                width={847}
-                height={505}
+                width={1439}
+                height={716}
                 className="h-14 w-auto"
               />
             </a>
@@ -132,7 +132,7 @@ export function Footer() {
             the interest rates. The past performance of the mutual funds is not necessarily
             indicative of future performance of the schemes. Mauli Wealth is not guaranteeing or
             assuring any dividend under any of the schemes and the same is subject to the
-            availability and adequacy of distributable surplus.            
+            availability and adequacy of distributable surplus.
             All existing and prospective investors are advised to check and evaluate the Exit loads and 
             other cost structure (TER) applicable at the time of making the investment before finalizing 
             on any investment decision for Mutual Funds schemes. We deal in Regular Plans only for 

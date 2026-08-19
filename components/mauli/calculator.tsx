@@ -87,7 +87,18 @@ const MODE_CONFIG: Record<
 
 const MODES = Object.keys(MODE_CONFIG) as Mode[]
 
-function AnimatedAmount({ value }: { value: number }) {
+/** Picks a smaller type size as the formatted rupee string gets longer, so
+ *  the headline number in the donut never spills outside the ring — even
+ *  at the biggest slider values (e.g. a 30-year, ₹1L/month SIP at 18%). */
+function amountFontClass(formatted: string): string {
+  const len = formatted.length
+  if (len <= 9) return 'text-lg sm:text-xl'
+  if (len <= 11) return 'text-base sm:text-lg'
+  if (len <= 13) return 'text-sm sm:text-base'
+  return 'text-xs sm:text-sm'
+}
+
+function AnimatedAmount({ value, className }: { value: number; className?: string }) {
   const mv = useMotionValue(value)
   const [display, setDisplay] = useState(() => formatINR(value))
 
@@ -101,7 +112,7 @@ function AnimatedAmount({ value }: { value: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
-  return <span className="font-mono tabular-nums">{display}</span>
+  return <span className={`font-mono tabular-nums ${className ?? ''}`}>{display}</span>
 }
 
 function SliderField({
@@ -289,11 +300,13 @@ export function Calculator() {
                       className="transition-[stroke-dasharray,stroke-dashoffset] duration-700 ease-out"
                     />
                   </svg>
-                  <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
                     <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
                       {isGoal ? 'Target Amount' : 'Total Value'}
                     </span>
-                    <span className="mt-1 max-w-[7.5rem] font-mono text-lg font-semibold leading-tight text-primary sm:text-xl">
+                    <span
+                      className={`mt-1 w-full font-semibold leading-tight text-primary ${amountFontClass(formatINR(totalValue))}`}
+                    >
                       <AnimatedAmount value={totalValue} />
                     </span>
                   </div>
