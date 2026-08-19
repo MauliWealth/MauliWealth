@@ -44,7 +44,7 @@ export function Header() {
       >
         <a href="/" className="flex items-center" aria-label="Mauli Wealth home">
           <Image
-            src="/logo-wordmark.png"
+            src="/logo.png"
             alt="Mauli Wealth"
             width={1431}
             height={584}
