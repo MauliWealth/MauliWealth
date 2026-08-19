@@ -48,7 +48,7 @@ export default async function OgImage() {
             display: 'flex',
             fontSize: 80,
             fontWeight: 700,
-            color: '#2c2650',
+            color: '#1256d8',
             letterSpacing: '-0.02em',
             marginTop: 22,
           }}
