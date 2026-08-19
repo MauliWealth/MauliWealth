@@ -47,7 +47,7 @@ export function Hero() {
         <Reveal delay={0.2}>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <a
-              href="#calculator"
+              href="calculator"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:text-base"
             >
               <TrendingUp className="size-4" aria-hidden="true" />
