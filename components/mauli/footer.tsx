@@ -12,14 +12,14 @@ const QUICK_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { icon: FacebookIcon, label: 'Facebook', href: undefined },
-  { icon: InstagramIcon, label: 'Instagram', href: 'https://www.instagram.com/mauli.wealth' },
+  { icon: FacebookIcon, label: 'Facebook', href: 'https://facebook.com/mauliwealth' },
+  { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/mauliwealth' },
   {
     icon: MessageCircle,
     label: 'WhatsApp',
     href: 'https://wa.me/918355960124',
   },
-  { icon: LinkedinIcon, label: 'LinkedIn', href: undefined },
+  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/mauliwealth' },
 ]
 
 const COMPLIANCE_LINKS = [
@@ -40,10 +40,10 @@ export function Footer() {
           <div>
             <a href="/" className="inline-flex items-center" aria-label="Mauli Wealth home">
               <Image
-                src="/logo.png"
+                src="/logo-wordmark.png"
                 alt="Mauli Wealth"
-                width={1439}
-                height={716}
+                width={1431}
+                height={584}
                 className="h-14 w-auto"
               />
             </a>
@@ -76,7 +76,7 @@ export function Footer() {
               <li>Founder: Vikas Deepak Parab</li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-accent-2" aria-hidden="true" />
-                Bhayandar (East), Thane
+                Ramavtar Area
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="size-4 shrink-0 text-accent-2" aria-hidden="true" />
@@ -86,8 +86,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="size-4 shrink-0 text-accent-2" aria-hidden="true" />
-                <a href="mailto:info@mauliwealth.com" className="hover:text-accent-2">
-                  info@mauliwealth.com
+                <a href="mailto:vikas122@gmail.com" className="hover:text-accent-2">
+                  vikas122@gmail.com
                 </a>
               </li>
             </ul>
@@ -133,11 +133,6 @@ export function Footer() {
             indicative of future performance of the schemes. Mauli Wealth is not guaranteeing or
             assuring any dividend under any of the schemes and the same is subject to the
             availability and adequacy of distributable surplus.
-            All existing and prospective investors are advised to check and evaluate the Exit loads and 
-            other cost structure (TER) applicable at the time of making the investment before finalizing 
-            on any investment decision for Mutual Funds schemes. We deal in Regular Plans only for 
-            Mutual Fund Schemes and earn a Trailing Commission on client investments. 
-            Disclosure For Commission earnings is made to clients at the time of investments.
           </p>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted-foreground">
