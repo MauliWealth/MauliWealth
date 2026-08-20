@@ -22,7 +22,7 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
-const SITE_URL = 'https://mauli-wealth.vercel.app'
+const SITE_URL = 'https://www.mauliwealth.com'
 const SITE_NAME = 'Mauli Wealth'
 const SITE_DESCRIPTION =
   'Mauli Wealth is an AMFI Registered Mutual Fund Distributor offering personalized guidance on Mutual Funds, SIP, Insurance, and Loans for long-term financial stability.'

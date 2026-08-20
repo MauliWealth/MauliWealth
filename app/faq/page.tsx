@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'FAQs & Enquiry',
   description:
     'Find answers to common questions about SIPs, mutual funds, and KYC — or send Mauli Wealth a direct investment enquiry.',
-  alternates: { canonical: 'https://mauli-wealth.vercel.app/faq' },
+  alternates: { canonical: 'https://www.mauliwealth.com/faq' },
 }
 
 export default function FaqPage() {

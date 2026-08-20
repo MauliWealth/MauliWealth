@@ -54,7 +54,7 @@ export function About() {
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white">
                     <ShieldCheck className="size-3.5" aria-hidden="true" />
-                    AMFI Registered
+                    AMFI Registered Mutual Fund Distributor
                   </span>
                 </div>
               </div>

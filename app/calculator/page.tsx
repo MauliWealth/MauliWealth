@@ -1,22 +1,22 @@
 import type { Metadata } from 'next'
 import { Header } from '@/components/mauli/header'
-import { ContactHero } from '@/components/mauli/contact-hero'
+import { Calculator } from '@/components/mauli/calculator'
 import { Footer } from '@/components/mauli/footer'
 import { FloatingActions } from '@/components/mauli/floating-actions'
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Financial Calculator',
   description:
-    'Get in touch with Mauli Wealth — call, WhatsApp, email, or find us on Instagram.',
-  alternates: { canonical: 'https://www.mauliwealth.com/contact' },
+      'Get in touch with Mauli Wealth — call, WhatsApp, email, or find us on Instagram.',
+  alternates: { canonical: 'https://www.mauliwealth.com/calculator' },
 }
 
-export default function ContactPage() {
+export default function CalculatorPage() {
   return (
     <>
       <Header />
       <main>
-        <ContactHero />
+        <Calculator />
       </main>
       <Footer />
       <FloatingActions />

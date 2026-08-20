@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'About Us',
   description:
     'Learn about Mauli Wealth, an AMFI Registered Mutual Fund Distributor founded by Vikas Deepak Parab (MBA Finance) — our vision, mission, and core values.',
-  alternates: { canonical: 'https://mauli-wealth.vercel.app/about' },
+  alternates: { canonical: 'https://www.mauliwealth.com/about' },
 }
 
 export default function AboutPage() {

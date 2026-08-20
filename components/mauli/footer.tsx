@@ -116,14 +116,14 @@ export function Footer() {
             <span className="font-mono">EUIN - 304458</span>
           </p>
 
-          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-muted-foreground">
+          {/* <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-muted-foreground">
             {COMPLIANCE_LINKS.map((label, i) => (
               <span key={label} className="flex items-center gap-2">
                 {i > 0 && <span aria-hidden="true">|</span>}
                 {label}
               </span>
             ))}
-          </p>
+          </p> */}
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-muted-foreground">
             Disclaimer: Mutual Fund investments are subject to market risks, read all scheme
