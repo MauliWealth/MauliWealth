@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const base = 'https://mauli-wealth.vercel.app'
+  const base = 'https://www.mauliwealth.com'
   return {
     rules: {
       userAgent: '*',
