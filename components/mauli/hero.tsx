@@ -37,11 +37,16 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.17}>
-          <p className="mt-5 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-wider text-muted-foreground sm:text-sm">
-            <span className="h-px w-6 bg-border sm:w-8" aria-hidden="true" />
-            Founded &amp; Led by Vikas Parab, MBA Finance
-            <span className="h-px w-6 bg-border sm:w-8" aria-hidden="true" />
-          </p>
+          <div className="mt-6 flex items-center justify-center gap-4">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-accent/40" aria-hidden="true" />
+            <span className="font-serif text-sm font-medium tracking-wide text-muted-foreground sm:text-base">
+              Founded &amp; Led by{' '}
+              <span className="font-semibold text-accent-2">Vikas Parab</span>
+              <span className="mx-2 inline-block h-1 w-1 rounded-full bg-accent/60 align-middle" />
+              {/* <span className="text-accent-2/80">MBA Finance</span> */}
+            </span>
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-accent/40" aria-hidden="true" />
+          </div>
         </Reveal>
 
         <Reveal delay={0.2}>
