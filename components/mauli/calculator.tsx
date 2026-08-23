@@ -122,7 +122,7 @@ function SliderField({
   max,
   step,
   onChange,
-  display,
+  suffix = '',
 }: {
   label: string
   value: number
@@ -130,15 +130,117 @@ function SliderField({
   max: number
   step: number
   onChange: (v: number) => void
-  display: ReactNode
+  suffix?: string
 }) {
   const fillPct = ((value - min) / (max - min)) * 100
+  const [inputValue, setInputValue] = useState<string>(String(value))
+  const [error, setError] = useState<string | null>(null)
+
+  // Sync input when value changes externally (e.g. mode switch)
+  useEffect(() => {
+    setInputValue(String(value))
+    setError(null)
+  }, [value])
+
+  // Helper: round to nearest step and clamp
+  const clampAndRound = (num: number): number => {
+    let clamped = Math.min(Math.max(num, min), max)
+    let rounded = Math.round(clamped / step) * step
+    // clamp again after rounding (floating point tolerance)
+    rounded = Math.min(Math.max(rounded, min), max)
+    return rounded
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value
+
+    // Allow empty string (user might be backspacing)
+    if (raw === '') {
+      setInputValue('')
+      setError(null)
+      return
+    }
+
+    // Only allow digits and at most one decimal point (for rate)
+    const numericRegex = /^(\d+)?(\.\d*)?$/
+    if (!numericRegex.test(raw)) {
+      // If it contains invalid chars, reject the change
+      return
+    }
+
+    setInputValue(raw)
+
+    const num = parseFloat(raw)
+    if (!isNaN(num)) {
+      // Check if out of bounds
+      if (num < min) {
+        setError(`Minimum is ${min}`)
+      } else if (num > max) {
+        setError(`Maximum is ${max}`)
+      } else {
+        setError(null)
+      }
+
+      // Clamp and round
+      const valid = clampAndRound(num)
+      onChange(valid)
+    } else {
+      // If parse fails (e.g. only a dot), don't update state
+      // but keep the input text as is (user might be typing decimal)
+    }
+  }
+
+  const handleBlur = () => {
+    // On blur, if input is empty, revert to current value
+    if (inputValue === '') {
+      setInputValue(String(value))
+      setError(null)
+      return
+    }
+
+    const num = parseFloat(inputValue)
+    if (isNaN(num)) {
+      // If invalid, reset to current value
+      setInputValue(String(value))
+      setError(null)
+      return
+    }
+
+    // Clamp and round, then update input and state
+    const valid = clampAndRound(num)
+    onChange(valid)
+    setInputValue(String(valid))
+    setError(null)
+  }
+
+  const handleFocus = () => {
+    // Show raw number (already plain)
+    setInputValue(String(value))
+    setError(null)
+  }
+
   return (
     <div>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <label className="text-sm font-medium text-foreground/85">{label}</label>
-        <span className="font-mono text-base font-semibold tabular-nums text-accent-2">{display}</span>
+        <div className="flex items-center gap-1">
+          <input
+            type="text"
+            className={`w-24 min-w-[5rem] rounded-md border border-border/60 bg-card px-2 py-1 text-right font-mono text-base font-semibold tabular-nums text-accent-2 focus:outline-none focus:ring-2 focus:ring-accent sm:w-32 ${
+              error ? 'border-red-500 ring-1 ring-red-500' : ''
+            }`}
+            value={inputValue}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            aria-label={label}
+          />
+          {suffix && <span className="text-sm font-medium text-foreground/70">{suffix}</span>}
+        </div>
       </div>
+      {error && (
+        <div className="mt-1 text-xs text-red-500 transition-opacity">{error}</div>
+      )}
       <input
         type="range"
         className="mw-slider mt-3"
@@ -147,7 +249,12 @@ function SliderField({
         max={max}
         step={step}
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          const newVal = Number(e.target.value)
+          onChange(newVal)
+          setInputValue(String(newVal))
+          setError(null)
+        }}
         aria-label={label}
       />
     </div>
@@ -247,7 +354,6 @@ export function Calculator() {
                   max={config.max}
                   step={config.step}
                   onChange={setAmount}
-                  display={formatINR(amount)}
                 />
                 <SliderField
                   label="Expected Annual Return"
@@ -256,7 +362,7 @@ export function Calculator() {
                   max={18}
                   step={0.5}
                   onChange={setRate}
-                  display={`${rate}%`}
+                  suffix="%"
                 />
                 <SliderField
                   label="Time Period"
@@ -265,7 +371,7 @@ export function Calculator() {
                   max={35}
                   step={1}
                   onChange={setYears}
-                  display={`${years} yr${years > 1 ? 's' : ''}`}
+                  suffix="yr"
                 />
               </div>
 

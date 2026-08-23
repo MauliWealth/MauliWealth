@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useReducedMotion } from 'motion/react'
 import { Star } from 'lucide-react'
@@ -16,7 +17,7 @@ type Testimonial = {
 
 const FEATURED_TESTIMONIALS: Testimonial[] = [
   {
-    photo: '/image_f200a3.png',
+    photo: '/amol_vk_org.png',
     initials: 'AV',
     name: 'Adv. Amol VK',
     designation: 'Advocate, LLB',
@@ -31,7 +32,15 @@ const FEATURED_TESTIMONIALS: Testimonial[] = [
     designation: '',
     rating: 5,
     quote:
-      'I’m very happy with the service and guidance provided by Mauli Wealth. The support has been helpful in making my mutual fund investment decisions. They simplified complex market trends into clear, actionable steps, ensuring my investments are well-diversified and aligned with my future goals. Their proactive communication and dedication to wealth creation make them an outstanding partner for securing financial growth over the years.',
+      'I’m very happy with the service and guidance provided by Mauli Wealth. The support has been helpful in making my mutual fund investment decisions. Their proactive communication and dedication to wealth creation make them an outstanding partner for securing financial growth over the years.',
+  },
+  {
+    initials: 'S.P.',
+    name: 'Saee Parab',
+    designation: '',
+    rating: 5,
+    quote:
+      'Had a great experience with Mauli Wealth. The mutual fund products and features were explained clearly, with guidance aligned to my future financial goals and growth plans. Overall, a professional and well-planned approach.'
   },
   {
     initials: 'M.N.',
@@ -39,36 +48,36 @@ const FEATURED_TESTIMONIALS: Testimonial[] = [
     designation: 'M.B.B.S',
     rating: 5,
     quote:
-      'My experience with Mauli Wealth has been very positive. As a new investor, I initially had very little understanding of how mutual funds work. Vikas explained everything in a simple and easy-to-understand way, which helped me feel more confident about starting my investment journey. The onboarding process was also very smooth and hassle-free. From completing the required formalities to starting my investment, I received proper guidance at every step. I truly appreciate the personal attention and support provided by Mauli Wealth.',
+      'My experience with Mauli Wealth has been very positive. As a new investor, I initially had very little understanding of how mutual funds work. Vikas explained everything in a simple and easy-to-understand way, which helped me feel more confident about starting my investment journey. The onboarding process was also very smooth and hassle-free. From completing the required formalities to starting my investment, I received proper guidance at every step. I truly appreciate the personal attention and support provided by the Mauli Wealth.',
   },
 ]
 
-const MORE_TESTIMONIALS: Testimonial[] = [
-  {
-    initials: 'R.S.',
-    name: 'Rohan S.',
-    designation: 'Software Engineer',
-    rating: 5,
-    quote:
-      'Patient and transparent from day one — every recommendation came with a clear "why", never just a sales pitch. My SIPs are finally aligned with actual goals.',
-  },
-  {
-    initials: 'P.M.',
-    name: 'Dr. Priya M.',
-    designation: 'M.B.B.S.',
-    rating: 5,
-    quote:
-      'I appreciated how everything was explained in plain language. No jargon, no pressure — just a clear plan I could actually understand and stick to.',
-  },
-  {
-    initials: 'A.K.',
-    name: 'Anand K.',
-    designation: 'Business Owner',
-    rating: 4,
-    quote:
-      'Regular check-ins made a real difference. It doesn’t feel like a one-time transaction — more like someone is actually keeping an eye on my portfolio.',
-  },
-]
+// const MORE_TESTIMONIALS: Testimonial[] = [
+//   {
+//     initials: 'S.P.',
+//     name: 'Saee Parab',
+//     designation: '',
+//     rating: 5,
+//     quote:
+//       'Had a great experience with Mauli Wealth. The mutual fund products and features were explained clearly, with guidance aligned to my future financial goals and growth plans. Overall, a professional and well-planned approach.'
+//   },
+//   {
+//     initials: 'P.M.',
+//     name: 'Dr. Priya M.',
+//     designation: 'M.B.B.S.',
+//     rating: 5,
+//     quote:
+//       'I appreciated how everything was explained in plain language. No jargon, no pressure — just a clear plan I could actually understand and stick to.',
+//   },
+//   {
+//     initials: 'A.K.',
+//     name: 'Anand K.',
+//     designation: 'Business Owner',
+//     rating: 4,
+//     quote:
+//       'Regular check-ins made a real difference. It doesn’t feel like a one-time transaction — more like someone is actually keeping an eye on my portfolio.',
+//   },
+// ]
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -88,7 +97,11 @@ function TestimonialCard({ t, className = '' }: { t: Testimonial; className?: st
   return (
     <div className={`flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-sm sm:p-7 ${className}`}>
       <Stars rating={t.rating} />
-      <p className="mt-4 flex-1 overflow-y-auto text-pretty text-sm leading-relaxed text-muted-foreground">
+      {/* suppressHydrationWarning added here to prevent browser extension mismatches */}
+      <p 
+        suppressHydrationWarning 
+        className="mt-4 flex-1 overflow-y-auto text-pretty text-sm leading-relaxed text-muted-foreground"
+      >
         &ldquo;{t.quote}&rdquo;
       </p>
       <div className="mt-6 flex items-center gap-4 border-t border-border pt-5">
@@ -144,7 +157,20 @@ function MobileCarousel({ testimonials }: { testimonials: Testimonial[] }) {
 
 export function Testimonials() {
   const reduceMotion = useReducedMotion()
-  const allTestimonials = [...FEATURED_TESTIMONIALS, ...MORE_TESTIMONIALS]
+  const allTestimonials = [...FEATURED_TESTIMONIALS]
+  // const allTestimonials = [...FEATURED_TESTIMONIALS, ...MORE_TESTIMONIALS]
+
+  // State to track if the component has mounted on the client
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Prevent side-effects from rendering animations before React is fully mounted
+  if (!isMounted) {
+    return null 
+  }
 
   return (
     <section className="bg-background">
