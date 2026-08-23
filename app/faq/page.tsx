@@ -17,8 +17,8 @@ export default function FaqPage() {
     <>
       <Header />
       <main>
-        <Faq />
         <EnquiryForm />
+        <Faq />
       </main>
       <Footer />
       <FloatingActions />
