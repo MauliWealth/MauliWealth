@@ -147,7 +147,10 @@ function MobileScrollJack() {
     target: trackRef,
     offset: ['start start', 'end end'],
   })
-  const x = useTransform(scrollYProgress, [0, 0.8, 1], ['0vw', '-200vw', '-200vw'])
+  const cardCount = FEATURED_TESTIMONIALS.length
+  const rowWidthPct = cardCount * 100 // e.g. 300% for 3 cards
+  const finalXPct = -((cardCount - 1) / cardCount) * 100 // e.g. -66.6667% of the row's own width
+  const x = useTransform(scrollYProgress, [0, 0.8, 1], ['0%', `${finalXPct}%`, `${finalXPct}%`])
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setShowButton(v > 0.78)
@@ -162,17 +165,21 @@ function MobileScrollJack() {
   const allTestimonials = [...FEATURED_TESTIMONIALS, ...MORE_TESTIMONIALS]
 
   return (
-    <div ref={sectionRef}>
+    <div ref={sectionRef} className="overflow-x-hidden">
       {!expanded ? (
-        <div ref={trackRef} style={{ height: '320vh' }} className="relative">
+        <div ref={trackRef} style={{ height: '320vh' }} className="relative overflow-x-hidden">
           <div
-            className="sticky overflow-hidden"
+            className="sticky overflow-hidden overscroll-x-none [touch-action:pan-y]"
             style={{ top: HEADER_OFFSET, height: `calc(100svh - ${HEADER_OFFSET}px)` }}
           >
-            <div className="flex h-full items-center">
-              <motion.div style={{ x }} className="flex">
+            <div className="flex h-full items-center overflow-hidden">
+              <motion.div style={{ x, width: `${rowWidthPct}%` }} className="flex">
                 {FEATURED_TESTIMONIALS.map((t) => (
-                  <div key={t.name} className="w-screen shrink-0 px-4">
+                  <div
+                    key={t.name}
+                    style={{ width: `${100 / cardCount}%` }}
+                    className="shrink-0 px-4"
+                  >
                     <TestimonialCard t={t} className="max-h-[65svh]" />
                   </div>
                 ))}
