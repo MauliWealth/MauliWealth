@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { useReducedMotion } from 'motion/react'
 import { Star } from 'lucide-react'
 import { Reveal } from './reveal'
 
@@ -7,25 +10,47 @@ type Testimonial = {
   designation: string
   rating: number
   quote: string
-  /** Optional path to a real client photo (e.g. '/testimonials/rohan.jpg').
-   *  Falls back to an initials avatar when not provided. */
   photo?: string
   initials: string
 }
 
-/**
- * Placeholder testimonials — swap these for real client feedback (with
- * their permission) before publishing. Add a `photo` path once real client
- * photos are available; until then, initials avatars are shown instead.
- */
-const TESTIMONIALS: Testimonial[] = [
+const FEATURED_TESTIMONIALS: Testimonial[] = [
+  {
+    photo: '/image_f200a3.png',
+    initials: 'AV',
+    name: 'Adv. Amol VK',
+    designation: 'Advocate, LLB',
+    rating: 5,
+    quote:
+      'Mauli Wealth, led by Mr. Vikas Parab, exemplifies excellence in investment advisory. With a research-driven approach and profound market understanding, Mr. Parab provided unwavering guidance during the volatile COVID period. The platform’s integrity, transparency, and client-centric philosophy have been pivotal in securing my financial stability. I confidently recommend Mauli Wealth and Mr. Vikas Parab to individuals seeking a dependable and results-oriented financial partner.',
+  },
+  {
+    photo: '/saurabh_org.png',
+    initials: 'SB',
+    name: 'Saurabh R. Bade',
+    designation: '',
+    rating: 5,
+    quote:
+      'I’m very happy with the service and guidance provided by Mauli Wealth. The support has been helpful in making my mutual fund investment decisions. They simplified complex market trends into clear, actionable steps, ensuring my investments are well-diversified and aligned with my future goals. Their proactive communication and dedication to wealth creation make them an outstanding partner for securing financial growth over the years.',
+  },
+  {
+    initials: 'M.N.',
+    name: 'Dr. Mansi Napanda',
+    designation: 'M.B.B.S',
+    rating: 5,
+    quote:
+      'My experience with Mauli Wealth has been very positive. As a new investor, I initially had very little understanding of how mutual funds work. Vikas explained everything in a simple and easy-to-understand way, which helped me feel more confident about starting my investment journey. The onboarding process was also very smooth and hassle-free. From completing the required formalities to starting my investment, I received proper guidance at every step. I truly appreciate the personal attention and support provided by Mauli Wealth.',
+  },
+]
+
+const MORE_TESTIMONIALS: Testimonial[] = [
   {
     initials: 'R.S.',
     name: 'Rohan S.',
     designation: 'Software Engineer',
     rating: 5,
     quote:
-      'Patient and transparent from day one \u2014 every recommendation came with a clear "why", never just a sales pitch. My SIPs are finally aligned with actual goals.',
+      'Patient and transparent from day one — every recommendation came with a clear "why", never just a sales pitch. My SIPs are finally aligned with actual goals.',
   },
   {
     initials: 'P.M.',
@@ -33,7 +58,7 @@ const TESTIMONIALS: Testimonial[] = [
     designation: 'M.B.B.S.',
     rating: 5,
     quote:
-      'I appreciated how everything was explained in plain language. No jargon, no pressure \u2014 just a clear plan I could actually understand and stick to.',
+      'I appreciated how everything was explained in plain language. No jargon, no pressure — just a clear plan I could actually understand and stick to.',
   },
   {
     initials: 'A.K.',
@@ -41,7 +66,7 @@ const TESTIMONIALS: Testimonial[] = [
     designation: 'Business Owner',
     rating: 4,
     quote:
-      'Regular check-ins made a real difference. It doesn\u2019t feel like a one-time transaction \u2014 more like someone is actually keeping an eye on my portfolio.',
+      'Regular check-ins made a real difference. It doesn’t feel like a one-time transaction — more like someone is actually keeping an eye on my portfolio.',
   },
 ]
 
@@ -59,7 +84,68 @@ function Stars({ rating }: { rating: number }) {
   )
 }
 
+function TestimonialCard({ t, className = '' }: { t: Testimonial; className?: string }) {
+  return (
+    <div className={`flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-sm sm:p-7 ${className}`}>
+      <Stars rating={t.rating} />
+      <p className="mt-4 flex-1 overflow-y-auto text-pretty text-sm leading-relaxed text-muted-foreground">
+        &ldquo;{t.quote}&rdquo;
+      </p>
+      <div className="mt-6 flex items-center gap-4 border-t border-border pt-5">
+        {t.photo ? (
+          <Image
+            src={t.photo}
+            alt={t.name}
+            width={72}
+            height={72}
+            className="size-18 shrink-0 rounded-full border-2 border-border/50 object-cover shadow-sm"
+          />
+        ) : (
+          <span className="flex size-18 shrink-0 items-center justify-center rounded-full border-2 border-accent/30 bg-accent/10 font-serif text-base font-semibold text-accent-foreground shadow-sm">
+            {t.initials}
+          </span>
+        )}
+        <div>
+          <p className="text-sm font-semibold text-primary">{t.name}</p>
+          {t.designation && <p className="text-xs text-muted-foreground">{t.designation}</p>}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Helper: split array into pairs
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const chunks: T[][] = []
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size))
+  }
+  return chunks
+}
+
+/** Mobile carousel: two testimonials per slide, horizontally scrollable */
+function MobileCarousel({ testimonials }: { testimonials: Testimonial[] }) {
+  const pairs = chunkArray(testimonials, 2)
+
+  return (
+    <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {pairs.map((pair, idx) => (
+        <div key={idx} className="w-[85%] shrink-0 snap-center sm:w-[75%]">
+          <div className="flex flex-col gap-4">
+            {pair.map((t) => (
+              <TestimonialCard key={t.name} t={t} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function Testimonials() {
+  const reduceMotion = useReducedMotion()
+  const allTestimonials = [...FEATURED_TESTIMONIALS, ...MORE_TESTIMONIALS]
+
   return (
     <section className="bg-background">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
@@ -72,36 +158,18 @@ export function Testimonials() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-xl border border-border bg-card p-7 shadow-sm">
-                <Stars rating={t.rating} />
-                <p className="mt-4 flex-1 text-pretty text-sm leading-relaxed text-muted-foreground">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                  {t.photo ? (
-                    <Image
-                      src={t.photo}
-                      alt={t.name}
-                      width={44}
-                      height={44}
-                      className="size-11 shrink-0 rounded-full object-cover"
-                    />
-                  ) : (
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/10 font-serif text-sm font-semibold text-accent-foreground">
-                      {t.initials}
-                    </span>
-                  )}
-                  <div>
-                    <p className="text-sm font-semibold text-primary">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.designation}</p>
-                  </div>
-                </div>
-              </div>
+        {/* Desktop: plain grid */}
+        <div className="mt-14 hidden gap-6 lg:grid lg:grid-cols-3">
+          {allTestimonials.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.06}>
+              <TestimonialCard t={t} />
             </Reveal>
           ))}
+        </div>
+
+        {/* Mobile: horizontal carousel with two per slide */}
+        <div className="mt-10 lg:hidden">
+          <MobileCarousel testimonials={allTestimonials} />
         </div>
       </div>
     </section>
