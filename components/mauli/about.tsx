@@ -89,7 +89,7 @@ export function About() {
                     </span>
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-xs font-medium text-foreground shadow-sm transition-all hover:bg-accent/10">
                       <ShieldCheck className="size-3.5 text-accent-2" aria-hidden="true" />
-                      AMFI Registered
+                      AMFI Registered Mutual Fund Distributor
                     </span>
                   </div>
 
